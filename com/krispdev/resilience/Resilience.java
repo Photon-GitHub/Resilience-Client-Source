@@ -88,15 +88,7 @@ public class Resilience {
 	public void start(){
 		//Utils.setSessionData("krisphf@gmail.com", "AquilinoJalava273");
 		//getWrapper().getMinecraft().session = new Session("NoahGarliot", "", "");
-		
-		String result = Utils.sendGetRequest("http://resilience.krispdev.com/isUser.php?ign="+getInvoker().getSessionUsername());
-		if(!result.equals("err")){
-			onlineStatus = "Servers Online";
-			boolean first = Boolean.parseBoolean(result);
-			if(!first){
-				setNewAccount(true);
-			}
-		}
+
 		getModuleManager().instantiateModules();
 		getValues().initValues();
 		try{
@@ -110,16 +102,7 @@ public class Resilience {
 		getModuleManager().setModuleState("Target Mobs", true);
 		getModuleManager().setModuleState("Target Animals", true);
 		EventGameShutdown forClassLoadingPurposes = new EventGameShutdown(0);
-		
-		String server = Utils.getSiteContent("http://resilience.krispdev.com/ResilienceOnlineChatServer");
-		if(!server.equals("") && !server.equals("ERR")){
-			getValues().ircChatServer = server;
-		}
-		
-		String channel = Utils.getSiteContent("http://resilience.krispdev.com/IRCChannel");
-		if(!channel.equals("") && !channel.equals("ERR")){
-			getValues().ircChannel = channel;
-		}
+
 		getIRCChatManager();
 		
 		Random rand = new Random();
